@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calculator {
+            width: 90%;
+            max-width: 700px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header .icon {
+            font-size: 50px;
+        }
+
+        .header h1 {
+            margin: 10px 0;
+            color: #174a67;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .input-box {
+            background: #f4f8fb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input {
+            width: 65%;
+            padding: 13px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 13px 20px;
+            margin-left: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #247ba0;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #175d7a;
+        }
+
+        .slab-title {
+            color: #174a67;
+            margin-bottom: 10px;
+        }
+
+        .slab-table,
+        .bill-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .slab-table th {
+            background: #174a67;
+            color: white;
+        }
+
+        .bill {
+            margin-top: 25px;
+            background: #eef7ff;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .bill h2 {
+            color: #174a67;
+        }
+
+        .bill-table th {
+            background: #247ba0;
+            color: white;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 23px;
+            font-weight: bold;
+            text-align: right;
+            color: #174a67;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        @media(max-width: 600px) {
+            input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            button {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .calculator {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <div class="header">
+        <h1>Electricity Bill Calculator</h1>
+        <p>Calculate your electricity bill based on slab rates</p>
+    </div>
+
+    <div class="input-box">
+
+        <label for="units">
+            Enter Electricity Units Consumed
+        </label>
+
+        <input
+            type="text"
+            id="units"
+            placeholder="Example: 347">
+
+        <button onclick="calculateBill()">
+            Calculate Bill
+        </button>
+
+        <div id="error"></div>
+
+    </div>
+
+    <h2 class="slab-title">Slab Rates</h2>
+
+    <table class="slab-table">
+
+        <tr>
+            <th>Units</th>
+            <th>Rate / Unit</th>
+        </tr>
+
+        <tr>
+            <td>0 - 100</td>
+            <td>₹5</td>
+        </tr>
+
+        <tr>
+            <td>101 - 200</td>
+            <td>₹7</td>
+        </tr>
+
+        <tr>
+            <td>201 - 300</td>
+            <td>₹10</td>
+        </tr>
+
+        <tr>
+            <td>Above 300</td>
+            <td>₹15</td>
+        </tr>
+
+    </table>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+const slabs = [
+    { limit: 100, rate: 5 },
+    { limit: 100, rate: 7 },
+    { limit: 100, rate: 10 },
+    { limit: Infinity, rate: 15 }
+];
+
+function calculateBill() {
+
+    let input = document.getElementById("units").value;
+    let error = document.getElementById("error");
+    let result = document.getElementById("result");
+
+    if (input.trim() === "" || isNaN(input) || Number(input) <= 0) {
+
+        error.innerHTML =
+            "<p class='error'>Please enter valid units.</p>";
+
+        result.innerHTML = "";
+
+        return;
+    }
+
+    let units = Number(input);
+
+    error.innerHTML = "";
+
+    let remaining = units;
+    let total = 0;
+    let rows = "";
+
+    for (let i = 0; i < slabs.length; i++) {
+
+        if (remaining <= 0) {
+            break;
+        }
+
+        let consumed =
+            Math.min(remaining, slabs[i].limit);
+
+        let cost =
+            consumed * slabs[i].rate;
+
+        total += cost;
+        remaining -= consumed;
+
+        rows += `
+            <tr>
+                <td>${i + 1}</td>
+                <td>${consumed}</td>
+                <td>₹${slabs[i].rate.toFixed(2)}</td>
+                <td>₹${cost.toFixed(2)}</td>
+            </tr>
+        `;
+    }
+
+    result.innerHTML = `
+
+        <div class="bill">
+
+            <h2>Bill Summary</h2>
+
+            <p>
+                <strong>Units Consumed:</strong>
+                ${units}
+            </p>
+
+            <table class="bill-table">
+
+                <tr>
+                    <th>Slab</th>
+                    <th>Units</th>
+                    <th>Rate</th>
+                    <th>Cost</th>
+                </tr>
+
+                ${rows}
+
+            </table>
+
+            <div class="total">
+                Total Bill: ₹${total.toFixed(2)}
+            </div>
+
+        </div>
+
+    `;
+}
+
+</script>
+
+</body>
+</html>
