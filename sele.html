@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elegant Bag Shop</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8f8;
+            margin: 0;
+            color: #333;
+        }
+
+        #header-box {
+            background-color: #fce4ec;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .highlight {
+            color: #d81b60;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid pink;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .card {
+            background-color: white;
+            width: 280px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+        .list-item {
+            background-color: #fff0f5;
+            padding: 10px;
+            margin: 8px 0;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #d81b60;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #ad1457;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header-box">
+        <h1>Elegant Bag Shop</h1>
+        <p class="highlight">Stylish bags for every occasion</p>
+    </div>
+
+    <div style="width:300px; margin:20px auto;">
+        <input type="text" placeholder="Search for a bag">
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Hand Bags</h2>
+            <p>Stylish and elegant handbags for everyday use.</p>
+            <div class="list-item">Leather Hand Bag - ₹1200</div>
+        </div>
+
+        <div class="card">
+            <h2>Backpacks</h2>
+            <p>Comfortable and trendy backpacks for college and travel.</p>
+            <div class="list-item">Casual Backpack - ₹900</div>
+        </div>
+
+        <div class="card">
+            <h2>Travel Bags</h2>
+            <p>Spacious and durable bags for travel and weekend trips.</p>
+            <div class="list-item">Travel Bag - ₹1500</div>
+            <button>Shop Now</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
