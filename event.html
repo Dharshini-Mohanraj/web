@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MysteryMania</title>
+
+<style>
+body {
+    background: #201530;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+button {
+    background: purple;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000a;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    background: #403050;
+    padding: 20px;
+}
+
+input, select {
+    padding: 8px;
+    margin: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MysteryMania 2026</h1>
+<h2>Can You Solve The Mystery?</h2>
+
+<p>Solve puzzles, find clues and escape!</p>
+
+<p>Date: 15 September 2026</p>
+<p>Venue: Mystery Arena, Chennai Central</p>
+<p>Time: 6 PM - 7 PM</p>
+<p>Duration: 60 Minutes</p>
+
+<button onclick="openForm()">Register Now</button>
+
+<!-- Popup -->
+
+<div class="popup" id="popup">
+<div class="box">
+
+<button onclick="closeForm()">X</button>
+
+<h2>Join MysteryMania</h2>
+
+<form id="form" onsubmit="register(event)">
+
+<label>Full Name</label><br>
+<input type="text" placeholder="Enter name" required>
+<br>
+
+<label>Email Address</label><br>
+<input type="email" placeholder="Enter email" required>
+<br>
+
+<label>Team Name</label><br>
+<input type="text" placeholder="Enter team name" required>
+<br>
+
+<label>Mystery Level</label><br>
+<select required>
+<option value="">Select Difficulty</option>
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Expert</option>
+</select>
+
+<br><br>
+
+<button type="submit">Submit Registration</button>
+
+</form>
+</div>
+</div>
+
+<script>
+function openForm() {
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closeForm() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function register(event) {
+    event.preventDefault();
+
+    if (confirm("Are you sure you want to register?")) {
+        alert("Registration Successful! Your mystery adventure awaits!");
+        document.getElementById("form").reset();
+        closeForm();
+    }
+    else {
+        alert("Registration Cancelled!");
+    }
+}
+</script>
+
+</body>
+</html>
