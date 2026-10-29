@@ -1,0 +1,676 @@
+EVENT LANDING PAGE
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>MysteryMania</title>
+
+<style>
+body {
+    background: #201530;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+button {
+    background: purple;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000a;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    background: #403050;
+    padding: 20px;
+}
+
+input, select {
+    padding: 8px;
+    margin: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>MysteryMania 2026</h1>
+<h2>Can You Solve The Mystery?</h2>
+
+<p>Solve puzzles, find clues and escape!</p>
+
+<p>Date: 15 September 2026</p>
+<p>Venue: Mystery Arena, Chennai Central</p>
+<p>Time: 6 PM - 7 PM</p>
+<p>Duration: 60 Minutes</p>
+
+<button onclick="openForm()">Register Now</button>
+
+<!-- Popup -->
+
+<div class="popup" id="popup">
+<div class="box">
+
+<button onclick="closeForm()">X</button>
+
+<h2>Join MysteryMania</h2>
+
+<form id="form" onsubmit="register(event)">
+
+<label>Full Name</label><br>
+<input type="text" placeholder="Enter name" required>
+<br>
+
+<label>Email Address</label><br>
+<input type="email" placeholder="Enter email" required>
+<br>
+
+<label>Team Name</label><br>
+<input type="text" placeholder="Enter team name" required>
+<br>
+
+<label>Mystery Level</label><br>
+<select required>
+<option value="">Select Difficulty</option>
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Expert</option>
+</select>
+
+<br><br>
+
+<button type="submit">Submit Registration</button>
+
+</form>
+</div>
+</div>
+
+<script>
+function openForm() {
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closeForm() {
+    document.getElementById("popup").style.display = "none";
+}
+
+function register(event) {
+    event.preventDefault();
+
+    if (confirm("Are you sure you want to register?")) {
+        alert("Registration Successful! Your mystery adventure awaits!");
+        document.getElementById("form").reset();
+        closeForm();
+    }
+    else {
+        alert("Registration Cancelled!");
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+EB BILL 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Bill Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calculator {
+            width: 90%;
+            max-width: 700px;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header .icon {
+            font-size: 50px;
+        }
+
+        .header h1 {
+            margin: 10px 0;
+            color: #174a67;
+        }
+
+        .header p {
+            color: #666;
+        }
+
+        .input-box {
+            background: #f4f8fb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input {
+            width: 65%;
+            padding: 13px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 13px 20px;
+            margin-left: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #247ba0;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #175d7a;
+        }
+
+        .slab-title {
+            color: #174a67;
+            margin-bottom: 10px;
+        }
+
+        .slab-table,
+        .bill-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .slab-table th {
+            background: #174a67;
+            color: white;
+        }
+
+        .bill {
+            margin-top: 25px;
+            background: #eef7ff;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .bill h2 {
+            color: #174a67;
+        }
+
+        .bill-table th {
+            background: #247ba0;
+            color: white;
+        }
+
+        .total {
+            margin-top: 20px;
+            font-size: 23px;
+            font-weight: bold;
+            text-align: right;
+            color: #174a67;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        @media(max-width: 600px) {
+            input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            button {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .calculator {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <div class="header">
+        <h1>Electricity Bill Calculator</h1>
+        <p>Calculate your electricity bill based on slab rates</p>
+    </div>
+
+    <div class="input-box">
+
+        <label for="units">
+            Enter Electricity Units Consumed
+        </label>
+
+        <input
+            type="text"
+            id="units"
+            placeholder="Example: 347">
+
+        <button onclick="calculateBill()">
+            Calculate Bill
+        </button>
+
+        <div id="error"></div>
+
+    </div>
+
+    <h2 class="slab-title">Slab Rates</h2>
+
+    <table class="slab-table">
+
+        <tr>
+            <th>Units</th>
+            <th>Rate / Unit</th>
+        </tr>
+
+        <tr>
+            <td>0 - 100</td>
+            <td>₹5</td>
+        </tr>
+
+        <tr>
+            <td>101 - 200</td>
+            <td>₹7</td>
+        </tr>
+
+        <tr>
+            <td>201 - 300</td>
+            <td>₹10</td>
+        </tr>
+
+        <tr>
+            <td>Above 300</td>
+            <td>₹15</td>
+        </tr>
+
+    </table>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+const slabs = [
+    { limit: 100, rate: 5 },
+    { limit: 100, rate: 7 },
+    { limit: 100, rate: 10 },
+    { limit: Infinity, rate: 15 }
+];
+
+function calculateBill() {
+
+    let input = document.getElementById("units").value;
+    let error = document.getElementById("error");
+    let result = document.getElementById("result");
+
+    if (input.trim() === "" || isNaN(input) || Number(input) <= 0) {
+
+        error.innerHTML =
+            "<p class='error'>Please enter valid units.</p>";
+
+        result.innerHTML = "";
+
+        return;
+    }
+
+    let units = Number(input);
+
+    error.innerHTML = "";
+
+    let remaining = units;
+    let total = 0;
+    let rows = "";
+
+    for (let i = 0; i < slabs.length; i++) {
+
+        if (remaining <= 0) {
+            break;
+        }
+
+        let consumed =
+            Math.min(remaining, slabs[i].limit);
+
+        let cost =
+            consumed * slabs[i].rate;
+
+        total += cost;
+        remaining -= consumed;
+
+        rows += `
+            <tr>
+                <td>${i + 1}</td>
+                <td>${consumed}</td>
+                <td>₹${slabs[i].rate.toFixed(2)}</td>
+                <td>₹${cost.toFixed(2)}</td>
+            </tr>
+        `;
+    }
+
+    result.innerHTML = `
+
+        <div class="bill">
+
+            <h2>Bill Summary</h2>
+
+            <p>
+                <strong>Units Consumed:</strong>
+                ${units}
+            </p>
+
+            <table class="bill-table">
+
+                <tr>
+                    <th>Slab</th>
+                    <th>Units</th>
+                    <th>Rate</th>
+                    <th>Cost</th>
+                </tr>
+
+                ${rows}
+
+            </table>
+
+            <div class="total">
+                Total Bill: ₹${total.toFixed(2)}
+            </div>
+
+        </div>
+
+    `;
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+CSS SELECTORS
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elegant Bag Shop</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8f8;
+            margin: 0;
+            color: #333;
+        }
+
+        #header-box {
+            background-color: #fce4ec;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .highlight {
+            color: #d81b60;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid pink;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .card {
+            background-color: white;
+            width: 280px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+        .list-item {
+            background-color: #fff0f5;
+            padding: 10px;
+            margin: 8px 0;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #d81b60;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #ad1457;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="header-box">
+        <h1>Elegant Bag Shop</h1>
+        <p class="highlight">Stylish bags for every occasion</p>
+    </div>
+
+    <div style="width:300px; margin:20px auto;">
+        <input type="text" placeholder="Search for a bag">
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>Hand Bags</h2>
+            <p>Stylish and elegant handbags for everyday use.</p>
+            <div class="list-item">Leather Hand Bag - ₹1200</div>
+        </div>
+
+        <div class="card">
+            <h2>Backpacks</h2>
+            <p>Comfortable and trendy backpacks for college and travel.</p>
+            <div class="list-item">Casual Backpack - ₹900</div>
+        </div>
+
+        <div class="card">
+            <h2>Travel Bags</h2>
+            <p>Spacious and durable bags for travel and weekend trips.</p>
+            <div class="list-item">Travel Bag - ₹1500</div>
+            <button>Shop Now</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
+
+FORM VALIDATION USING JS
+
+<html>
+    <body>
+        <form onsubmit = "return validate()">
+            <center>
+        <table>
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input type = "text" id = "name">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    Email:
+                </td>
+                <td>
+                    <input type = "text" id = "email">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    Phone:
+                </td>
+                <td>
+                    <input type = "text" id = "phone">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    <input type = "password" id = "password">
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    Confirm Password:
+                </td>
+                <td>
+                    <input type = "password" id = "confirm_password">
+                </td>
+            </tr>
+             <tr>
+                <td align = "center" colspan = "2">
+                    <button type = "submit">Register</button>
+                </td>
+                
+            </tr>
+        </table>
+    </center>
+        </form>
+
+        <script>
+            function validate()
+            {
+                let namePattern = /^[A-Za-z ]{3,}$/;
+                let emailPattern = /^\S+@\S+\.\S+$/;
+                let phonePattern = /^[0-9]{10}$/;
+                let passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{6,}$/;
+
+                let name = document.getElementById("name").value.trim();
+                let email = document.getElementById("email").value;
+                let phone = document.getElementById("phone").value;
+                let password = document.getElementById("password").value;
+                let confirm_password = document.getElementById("confirm_password").value;
+
+                if (name == "" || email == "" || phone == ""|| password ==""|| confirm_password == "")
+            {
+                alert("All fields are required");
+                return false;
+            }
+            if (!namePattern.test(name))
+            {
+                alert("name must contains atleast 3 letters and doesnot contain any special characters or numbers");
+                return false;
+            }
+             if (!emailPattern.test(email))
+            {
+                alert("enter a valid email address");
+                return false;
+            }
+            if (!phonePattern.test(phone))
+            {
+                alert("enter a valid phone number");
+                return false;
+            }
+            if (!passwordPattern.test(password))
+            {
+                alert("password must contains atleast 6 characters and combination of upper case,lowercase,special characters and numbers");
+                return false;
+            }
+            if (password != confirm_password)
+            {
+                alert("password and confirm password must be same");
+                return false;
+            }
+            alert("Registration success");
+            return false;
+            }
+        </script>
+
+    </body>
+</html>
+
+
+
+
+
+
+
